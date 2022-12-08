@@ -17,7 +17,23 @@
         config = { allowUnFree = true; };
       };
       lib = nixpkgs.lib;
+      home-linux = {
+        home.homeDirectory = "/home/uwo";
+        home.username = "uwo";
+        configuration = {
+          imports = [
+            ./hosts/home.nix
+          ];
+        };
+      };
     in {
+    homeConfigurations = {
+      nixos = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [
+          home-linux
+        ];
+      };
       nixosConfigurations = {
         uwo = lib.nixosSystem {
           inherit system;
