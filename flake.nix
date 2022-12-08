@@ -22,7 +22,7 @@
         uwo = lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+            ./hosts/configuration.nix
           ];
         };
       };
